@@ -1,0 +1,126 @@
+<button class="layout-config-button p-link" type="button" (click)="onConfigButtonClick()">
+    <i class="pi pi-cog"></i>
+</button>
+
+<p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
+    styleClass="layout-config-sidebar w-18rem">
+    <h5 style="color: var(--primary-color);">Themes</h5>
+    <div class="flex flex-wrap row-gap-3">
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('indigo', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(99, 102, 241);"><i *ngIf="selectedTheme === 'indigo'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('blue', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(59, 130, 246);"><i *ngIf="selectedTheme === 'blue'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('purple', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(139, 92, 246);"><i *ngIf="selectedTheme === 'purple'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('teal', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(20, 184, 166);"><i *ngIf="selectedTheme === 'teal'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('cyan', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(6, 182, 212);"><i *ngIf="selectedTheme === 'cyan'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('green', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(16, 185, 129);"><i *ngIf="selectedTheme === 'green'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('orange', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(245, 158, 11);"><i *ngIf="selectedTheme === 'orange'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+        <div class="w-3 ng-star-inserted"><button type="button" (click)="changeTheme('pink', 'light')"
+                class="cursor-pointer p-link w-2rem h-2rem border-circle flex-shrink-0 flex align-items-center justify-content-center"
+                style="background-color: rgb(217, 70, 239);"><i *ngIf="selectedTheme === 'pink'"
+                    class="pi pi-check text-white ng-star-inserted"></i></button></div>
+    </div>
+
+    <h5 style="color: var(--primary-color);">Scale</h5>
+
+    <div class="flex align-items-center">
+        <button icon="pi pi-minus" type="button" pButton (click)="decrementScale()"
+            class="p-button-text p-button-rounded w-2rem h-2rem mr-2" [disabled]="scale === scales[0]"></button>
+        <div class="flex gap-2 align-items-center">
+            <i class="pi pi-circle-fill text-300" *ngFor="let s of scales"
+                [ngClass]="{'text-primary-500': s === scale}"></i>
+        </div>
+        <button icon="pi pi-plus" type="button" pButton (click)="incrementScale()"
+            class="p-button-text p-button-rounded w-2rem h-2rem ml-2"
+            [disabled]="scale === scales[scales.length - 1]"></button>
+    </div>
+
+    <ng-container *ngIf="!minimal">
+        <h5 style="color: var(--primary-color);">Menu Type</h5>
+        <div class="field-radiobutton">
+            <p-radioButton name="menuMode" value="static" [(ngModel)]="menuMode" inputId="mode1"></p-radioButton>
+            <label for="mode1">Static</label>
+        </div>
+        <div class="field-radiobutton">
+            <p-radioButton name="menuMode" value="overlay" [(ngModel)]="menuMode" inputId="mode2"></p-radioButton>
+            <label for="mode2">Overlay</label>
+        </div>
+    </ng-container>
+
+    <!--
+    <h5 style="color: var(--primary-color);">Menu Theme</h5>
+
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="filled" [(ngModel)]="inputStyle"
+            inputId="outlined_input"></p-radioButton>
+        <label for="outlined_input">Color Scheme</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="filled" [(ngModel)]="inputStyle"
+            inputId="outlined_input"></p-radioButton>
+        <label for="outlined_input">Primary Color</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="filled" [(ngModel)]="inputStyle"
+            inputId="outlined_input"></p-radioButton>
+        <label for="outlined_input">Transparent</label>
+    </div>
+    -->
+
+    <h5 style="color: var(--primary-color);">Color Scheme</h5>
+
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="light" [(ngModel)]="inputScheme" (click)="changeScheme('light')"
+            inputId="outlined_input"></p-radioButton>
+        <label for="outlined_input">Light</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="dim" [(ngModel)]="inputScheme" (click)="changeScheme('dim')"
+            inputId="filled_input"></p-radioButton>
+        <label for="filled_input">Dim</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="inputStyle" value="dark" [(ngModel)]="inputScheme" (click)="changeScheme('dark')"
+            inputId="filled_input"></p-radioButton>
+        <label for="filled_input">Dark</label>
+    </div>
+
+
+    <ng-container *ngIf="!minimal">
+        <h5 style="color: var(--primary-color);">Input Style</h5>
+        <div class="flex">
+            <div class="field-radiobutton flex-1">
+                <p-radioButton name="inputStyle" value="outlined" [(ngModel)]="inputStyle"
+                    inputId="outlined_input"></p-radioButton>
+                <label for="outlined_input">Outlined</label>
+            </div>
+            <div class="field-radiobutton flex-1">
+                <p-radioButton name="inputStyle" value="filled" [(ngModel)]="inputStyle"
+                    inputId="filled_input"></p-radioButton>
+                <label for="filled_input">Filled</label>
+            </div>
+        </div>
+
+        <h5 style="color: var(--primary-color);">Ripple Effect</h5>
+        <p-inputSwitch [(ngModel)]="ripple"></p-inputSwitch>
+    </ng-container>
+</p-sidebar>
